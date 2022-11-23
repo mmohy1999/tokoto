@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../helper/size_config.dart';
 
-
 class DiscountBanner extends StatelessWidget {
   const DiscountBanner({
     Key? key,
@@ -11,7 +10,6 @@ class DiscountBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 90,
       width: double.infinity,
       margin: EdgeInsets.all(getProportionateScreenWidth(20)),
       padding: EdgeInsets.symmetric(
@@ -19,14 +17,14 @@ class DiscountBanner extends StatelessWidget {
         vertical: getProportionateScreenWidth(15),
       ),
       decoration: BoxDecoration(
-        color: Color(0xFF4A3298),
+        color: const Color(0xFF4A3298),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text.rich(
         TextSpan(
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
           children: [
-            TextSpan(text: "A Summer Surpise\n"),
+            const TextSpan(text: "A Summer Surpise\n"),
             TextSpan(
               text: "Cashback 20%",
               style: TextStyle(

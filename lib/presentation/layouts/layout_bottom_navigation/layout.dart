@@ -5,6 +5,8 @@ import 'package:tokoto_e_commerce/business_logic/layout/layout_cubit.dart';
 import 'package:tokoto_e_commerce/presentation/layouts/layout_bottom_navigation/bottom_navigation.dart';
 import 'package:tokoto_e_commerce/presentation/screens/sign_in/sign_in.dart';
 
+import '../../../constants/enum.dart';
+
 class LayoutBottomNavigation extends StatelessWidget {
   const LayoutBottomNavigation({Key? key}) : super(key: key);
 
@@ -12,11 +14,18 @@ class LayoutBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LayoutCubit(),
-      child: Scaffold(
-          body:BlocBuilder<LayoutCubit,LayoutState>(builder: (context, state) => LayoutCubit.get(context).body,),
+      child: BlocBuilder<LayoutCubit, LayoutState>(
+        builder: (context, state) {
+        return Scaffold(
+          appBar:LayoutCubit.get(context).selectedMenu != MenuState.home? AppBar(
+            title:Text(LayoutCubit.get(context).selectedMenu.name),
+          ):null ,
+          body:LayoutCubit.get(context).body,
           bottomNavigationBar: const BottomNavigation()
 
-      ),
+      );
+  },
+),
     );
   }
 }

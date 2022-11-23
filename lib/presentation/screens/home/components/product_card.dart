@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tokoto_e_commerce/business_logic/product/product_cubit.dart';
 
 import '../../../../constants/constants.dart';
 import '../../../../data/models/product.dart';
@@ -11,11 +12,12 @@ class ProductCard extends StatelessWidget {
     this.width = 140,
     this.aspectRetio = 1.02,
     required this.product,
+    required this.index,
   }) : super(key: key);
 
   final double width, aspectRetio;
   final Product product;
-
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +25,7 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-          onTap: (){},
+          onTap: () {},
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,7 +46,7 @@ class ProductCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 product.title,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
                 maxLines: 2,
               ),
               Row(
@@ -60,7 +62,9 @@ class ProductCard extends StatelessWidget {
                   ),
                   InkWell(
                     borderRadius: BorderRadius.circular(50),
-                    onTap: () {},
+                    onTap: () {
+                      ProductCubit.get(context).changeFavourite(index);
+                    },
                     child: Container(
                       padding: EdgeInsets.all(getProportionateScreenWidth(8)),
                       height: getProportionateScreenWidth(28),
@@ -74,8 +78,8 @@ class ProductCard extends StatelessWidget {
                       child: SvgPicture.asset(
                         "assets/icons/Heart Icon_2.svg",
                         color: product.isFavourite
-                            ? Color(0xFFFF4848)
-                            : Color(0xFFDBDEE4),
+                            ? const Color(0xFFFF4848)
+                            : const Color(0xFFDBDEE4),
                       ),
                     ),
                   ),
