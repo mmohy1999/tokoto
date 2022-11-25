@@ -16,7 +16,7 @@ class SearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextField(
-        onChanged: (value) => print(value),
+        onChanged: (value) => debugPrint(value),
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(20),
@@ -25,7 +25,7 @@ class SearchField extends StatelessWidget {
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
             hintText: "Search product",
-            prefixIcon: Icon(Icons.search)),
+            prefixIcon: const Icon(Icons.search)),
       ),
     );
   }

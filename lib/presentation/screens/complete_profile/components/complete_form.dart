@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tokoto_e_commerce/business_logic/auth/auth_cubit.dart';
-
 import '../../../../helper/size_config.dart';
 import '../../../widgets/build_error.dart';
 import '../../../widgets/custom_suffix_icon.dart';
 import '../../../widgets/default_button.dart';
-
 
 class CompleteForm extends StatelessWidget {
   const CompleteForm({Key? key}) : super(key: key);
@@ -37,9 +35,8 @@ class CompleteForm extends StatelessWidget {
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
               return Column(
-                  children: List.generate(
-                      cubit.errors.length, (index) =>
-                      buildError(cubit.errors[index])));
+                  children: List.generate(cubit.errors.length,
+                      (index) => buildError(cubit.errors[index])));
             },
           ),
           DefaultButton(
@@ -94,8 +91,7 @@ class CompleteForm extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: 'phone Number',
           hintText: 'Enter your phone Number',
-          suffixIcon: CustomSuffixIcon(
-              icon: 'assets/icons/Phone.svg')),
+          suffixIcon: CustomSuffixIcon(icon: 'assets/icons/Phone.svg')),
     );
   }
 
@@ -110,10 +106,8 @@ class CompleteForm extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: 'Address',
           hintText: 'Enter your Address',
-          suffixIcon: CustomSuffixIcon(
-              icon: 'assets/icons/Location point.svg')),
+          suffixIcon:
+              CustomSuffixIcon(icon: 'assets/icons/Location point.svg')),
     );
   }
-
-
 }

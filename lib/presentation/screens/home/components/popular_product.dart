@@ -29,7 +29,10 @@ class PopularProducts extends StatelessWidget {
                     cubit.demoProducts.length,
                     (index) {
                       if (cubit.demoProducts[index].isPopular) {
-                        return ProductCard(product: cubit.demoProducts[index],index: index,);
+                        return ProductCard(
+                          product: cubit.demoProducts[index],
+                          index: index,
+                        );
                       }
                       return const SizedBox
                           .shrink(); // here by default width and height is 0

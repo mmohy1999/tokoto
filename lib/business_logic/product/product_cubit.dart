@@ -1,8 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:tokoto_e_commerce/data/models/product.dart';
 
 part 'product_state.dart';

@@ -12,17 +12,24 @@ class Body extends StatelessWidget {
       width: double.infinity,
       child: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Column(
-            children:  [
-              SizedBox(height: SizeConfig.screenHeight*0.04,),
-               Text('Forget Password',
-                style:  headingStyle
-                ,),
+            children: [
+              SizedBox(
+                height: SizeConfig.screenHeight * 0.04,
+              ),
+              Text(
+                'Forget Password',
+                style: headingStyle,
+              ),
               const Text(
                 "please enter your email and we will send \nyou a link to return to your account",
-                textAlign: TextAlign.center,),
-              SizedBox(height: SizeConfig.screenHeight*0.1,),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: SizeConfig.screenHeight * 0.1,
+              ),
               const ForgetPasswordForm()
             ],
           ),
@@ -31,5 +38,3 @@ class Body extends StatelessWidget {
     );
   }
 }
-
-

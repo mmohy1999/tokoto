@@ -1,11 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:tokoto_e_commerce/presentation/screens/forget_password/components/forget_password_form.dart';
 import 'package:tokoto_e_commerce/presentation/screens/forget_password/forget_password.dart';
 import 'package:tokoto_e_commerce/presentation/screens/sign_in/sign_in.dart';
-
 import '../../constants/constants.dart';
 import '../../presentation/screens/complete_profile/complete_profile.dart';
 import '../../presentation/screens/login_success/login_success.dart';
@@ -17,7 +13,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  static AuthCubit get(context)=>BlocProvider.of(context);
+  static AuthCubit get(context) => BlocProvider.of(context);
 //region Fields
   final signInFormKey = GlobalKey<FormState>();
   final signUpFormKey = GlobalKey<FormState>();
@@ -41,18 +37,17 @@ class AuthCubit extends Cubit<AuthState> {
   late FocusNode pin3FocusNode;
   late FocusNode pin4FocusNode;
   //endregion
-  late FocusNode passwordFocusNode=FocusNode();
+  late FocusNode passwordFocusNode = FocusNode();
 
   final List<String> errors = [];
-  bool remember=false;
-
+  bool remember = false;
 
 //endregion
 
 //region Functions
 
   //region init State
-  initStateSignUp(){
+  initStateSignUp() {
     errors.clear();
     emailController.clear();
     passwordController.clear();
@@ -62,7 +57,8 @@ class AuthCubit extends Cubit<AuthState> {
     lastNameController.clear();
     addressController.clear();
   }
-  initStateOtp(){
+
+  initStateOtp() {
     pin2FocusNode = FocusNode();
     pin3FocusNode = FocusNode();
     pin4FocusNode = FocusNode();
@@ -70,20 +66,22 @@ class AuthCubit extends Cubit<AuthState> {
   //endregion
 
   nextField(FocusNode focusNode) {
-      focusNode.requestFocus();
+    focusNode.requestFocus();
   }
-  changeRemember(){
-    remember=!remember;
+
+  changeRemember() {
+    remember = !remember;
     emit(ChangeRemember());
   }
 
   //region Dispose
-  disposeSignUpBack(){
+  disposeSignUpBack() {
     emailController.clear();
     passwordController.clear();
     errors.clear();
   }
-  disposeOtpBack(){
+
+  disposeOtpBack() {
     pin2FocusNode.dispose();
     pin3FocusNode.dispose();
     pin4FocusNode.dispose();
@@ -93,8 +91,8 @@ class AuthCubit extends Cubit<AuthState> {
 //endregion
 
 //region Navigation
-  onBack({required BuildContext context, required String currentRote}){
-    switch(currentRote){
+  onBack({required BuildContext context, required String currentRote}) {
+    switch (currentRote) {
       case SignUpScreen.routeName:
         disposeSignUpBack();
         break;
@@ -103,25 +101,28 @@ class AuthCubit extends Cubit<AuthState> {
         break;
     }
 
-
     Navigator.pop(context);
     emit(NavigationBack());
   }
-  navigationTo({required String route, required BuildContext context, Object? arguments}){
-     switch(route){
+
+  navigationTo(
+      {required String route,
+      required BuildContext context,
+      Object? arguments}) {
+    switch (route) {
       case SignUpScreen.routeName:
         initStateSignUp();
         break;
-       case  ForgetPasswordScreen.routeName :
-         errors.clear();
-         break;
+      case ForgetPasswordScreen.routeName:
+        errors.clear();
+        break;
     }
-    Navigator.pushNamed(context, route,arguments:arguments);
+    Navigator.pushNamed(context, route, arguments: arguments);
   }
 // endregion
 
 //region  TextFormField onChange
-  ValueChanged<String>? onChangedEmail(String value){
+  ValueChanged<String>? onChangedEmail(String value) {
     if (value.isNotEmpty && errors.contains(kEmailNullError)) {
       errors.remove(kEmailNullError);
       emit(RemoveError());
@@ -132,63 +133,65 @@ class AuthCubit extends Cubit<AuthState> {
     }
     return null;
   }
-  ValueChanged<String>? onChangedPassword(String value){
+
+  ValueChanged<String>? onChangedPassword(String value) {
     if (value.isNotEmpty) {
       if (errors.contains(kPassNullError)) {
         errors.remove(kPassNullError);
         emit(RemoveError());
       }
-    }
-    else if (value.length >= 8 && errors.contains(kShortPassError)) {
+    } else if (value.length >= 8 && errors.contains(kShortPassError)) {
       errors.remove(kShortPassError);
       emit(RemoveError());
     }
     return null;
-  
-    
   }
-  ValueChanged<String>? onChangedRePassword(String value){
+
+  ValueChanged<String>? onChangedRePassword(String value) {
     if (value == passwordController.text) {
       if (errors.contains(kMatchPassError)) {
-          errors.remove(kMatchPassError);
-          emit(RemoveError());
+        errors.remove(kMatchPassError);
+        emit(RemoveError());
       }
     }
     return null;
   }
-  ValueChanged<String>? onChangedFirstName(String value){
+
+  ValueChanged<String>? onChangedFirstName(String value) {
     if (value.isNotEmpty) {
       if (errors.contains(kNamelNullError)) {
-          errors.remove(kNamelNullError);
-          emit(RemoveError());
+        errors.remove(kNamelNullError);
+        emit(RemoveError());
       }
     }
     return null;
   }
-  ValueChanged<String>? onChangedLastName(String value){
+
+  ValueChanged<String>? onChangedLastName(String value) {
     if (value.isNotEmpty) {
       if (errors.contains(kNamelNullError)) {
-          errors.remove(kNamelNullError);
-          emit(RemoveError());
+        errors.remove(kNamelNullError);
+        emit(RemoveError());
       }
     }
     return null;
   }
-  ValueChanged<String>? onChangedPhone(String value){
+
+  ValueChanged<String>? onChangedPhone(String value) {
     if (value.isNotEmpty) {
       if (errors.contains(kPhoneNumberNullError)) {
-          errors.remove(kPhoneNumberNullError);
-          emit(RemoveError());
+        errors.remove(kPhoneNumberNullError);
+        emit(RemoveError());
       }
     }
     return null;
-
   }
-  ValueChanged<String>? onChangedAddress(String value){
+
+  ValueChanged<String>? onChangedAddress(String value) {
     if (value.isNotEmpty) {
       if (errors.contains(kAddressNullError)) {
-          errors.remove(kAddressNullError);
-          emit(RemoveError());
+        errors.remove(kAddressNullError);
+        emit(RemoveError());
       }
     }
     return null;
@@ -196,38 +199,41 @@ class AuthCubit extends Cubit<AuthState> {
 
   //region otp
   onChangedPin1(String value) {
-    if(value.length>=2){
+    if (value.length >= 2) {
       pin1Controller.clear();
-      pin1Controller.text=value[1];
+      pin1Controller.text = value[1];
     }
-    if(pin1Controller.text.length==1) {
+    if (pin1Controller.text.length == 1) {
       nextField(pin2FocusNode);
     }
   }
+
   onChangedPin2(String value) {
-    if(value.length>=2){
+    if (value.length >= 2) {
       pin2Controller.clear();
-      pin2Controller.text=value[1];
+      pin2Controller.text = value[1];
     }
-    if(pin2Controller.text.length==1) {
+    if (pin2Controller.text.length == 1) {
       nextField(pin3FocusNode);
     }
   }
+
   onChangedPin3(String value) {
-    if(value.length>=2){
+    if (value.length >= 2) {
       pin3Controller.clear();
-      pin3Controller.text=value[1];
+      pin3Controller.text = value[1];
     }
-    if(pin3Controller.text.length==1) {
+    if (pin3Controller.text.length == 1) {
       nextField(pin4FocusNode);
     }
   }
+
   onChangedPin4(String value) {
-    if(value.length>=2){
+    if (value.length >= 2) {
       pin4Controller.clear();
-      pin4Controller.text=value[1];
+      pin4Controller.text = value[1];
     }
-    if( pin4Controller.text.length==1) {
+    if (pin4Controller.text.length == 1) {
       pin4FocusNode.unfocus();
     }
   }
@@ -235,7 +241,7 @@ class AuthCubit extends Cubit<AuthState> {
 //endregion
 
 //region TextFormField validation
-  String? validationEmail(String? value){
+  String? validationEmail(String? value) {
     if (value!.isEmpty) {
       if (errors.contains(kInvalidEmailError)) {
         errors.remove(kInvalidEmailError);
@@ -254,7 +260,8 @@ class AuthCubit extends Cubit<AuthState> {
     }
     return null;
   }
-  String?  validationPassword(String? value){
+
+  String? validationPassword(String? value) {
     if (value!.isEmpty) {
       if (errors.contains(kShortPassError)) {
         errors.remove(kShortPassError);
@@ -265,62 +272,66 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AddError());
       }
       return '';
-    }
-    else if (value.length < 8 && !errors.contains(kShortPassError)) {
+    } else if (value.length < 8 && !errors.contains(kShortPassError)) {
       errors.add(kShortPassError);
       emit(AddError());
       return '';
     }
     return null;
   }
-  String?  validationRePassword(String? value){
+
+  String? validationRePassword(String? value) {
     if (value!.isEmpty) {
       return '';
     }
     if (value != passwordController.text) {
       if (!errors.contains(kMatchPassError)) {
-          errors.add(kMatchPassError);
-          emit(AddError());
+        errors.add(kMatchPassError);
+        emit(AddError());
       }
       return '';
     }
     return null;
   }
-  String?  validationFirstName(String? value){
+
+  String? validationFirstName(String? value) {
     if (value!.isEmpty) {
       if (!errors.contains(kNamelNullError)) {
-          errors.add(kNamelNullError);
-          emit(AddError());
+        errors.add(kNamelNullError);
+        emit(AddError());
       }
       return '';
     }
     return null;
   }
-  String?  validationLastName(String? value){
+
+  String? validationLastName(String? value) {
     if (value!.isEmpty) {
       if (!errors.contains(kNamelNullError)) {
-          errors.add(kNamelNullError);
-          emit(AddError());
+        errors.add(kNamelNullError);
+        emit(AddError());
       }
       return '';
     }
     return null;
   }
-  String?  validationPhone(String? value){
+
+  String? validationPhone(String? value) {
     if (value!.isEmpty) {
       if (!errors.contains(kPhoneNumberNullError)) {
-          errors.add(kPhoneNumberNullError);
-          emit(AddError());
+        errors.add(kPhoneNumberNullError);
+        emit(AddError());
       }
       return '';
     }
     return null;
   }
-  String?  validationAddress(String? value){
+
+  String? validationAddress(String? value) {
     if (value!.isEmpty) {
       if (!errors.contains(kAddressNullError)) {
-          errors.add(kAddressNullError);
-          emit(AddError());
+        errors.add(kAddressNullError);
+        emit(AddError());
       }
       return '';
     }
@@ -329,7 +340,7 @@ class AuthCubit extends Cubit<AuthState> {
 //endregion
 
 //region Form validation
-  validationSingInForm(BuildContext context){
+  validationSingInForm(BuildContext context) {
     if (errors.isNotEmpty) {
       // errors.removeRange(0, errors.length - 1);
       errors.clear();
@@ -341,17 +352,18 @@ class AuthCubit extends Cubit<AuthState> {
     }
     emit(SignInValidation());
   }
-  validationSingUPForm(BuildContext context){
+
+  validationSingUPForm(BuildContext context) {
     if (errors.isNotEmpty) {
       errors.clear();
     }
     signUpFormKey.currentState!.save();
     if (signUpFormKey.currentState!.validate()) {
-      Navigator.pushNamed(
-          context, CompleteProfileScreen.routeName);
+      Navigator.pushNamed(context, CompleteProfileScreen.routeName);
     }
   }
-  validationCompleteForm(BuildContext context){
+
+  validationCompleteForm(BuildContext context) {
     if (errors.isNotEmpty) {
       errors.clear();
     }
@@ -361,23 +373,26 @@ class AuthCubit extends Cubit<AuthState> {
       Navigator.pushNamed(context, OtpScreen.routeName);
     }
   }
-  validationOtpForm(BuildContext context){
-    String otp=pin1Controller.text + pin2Controller.text+pin3Controller.text+pin4Controller.text;
-    print(otp);
 
+  validationOtpForm(BuildContext context) {
+    String otp = pin1Controller.text +
+        pin2Controller.text +
+        pin3Controller.text +
+        pin4Controller.text;
+    debugPrint(otp);
   }
-  validationForgetPasswordForm(BuildContext context){
+
+  validationForgetPasswordForm(BuildContext context) {
     if (errors.isNotEmpty) {
       errors.clear();
     }
-    if(forgetPasswordFormKey.currentState!.validate()){
+    if (forgetPasswordFormKey.currentState!.validate()) {
       forgetPasswordFormKey.currentState!.save();
       onBack(context: context, currentRote: SignInScreen.routeName);
     }
   }
 
 //endregion
-
 
   @override
   Future<void> close() async {

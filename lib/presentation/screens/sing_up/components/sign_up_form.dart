@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tokoto_e_commerce/business_logic/auth/auth_cubit.dart';
-import 'package:tokoto_e_commerce/presentation/screens/otp/otp.dart';
 import '../../../../helper/size_config.dart';
 import '../../../widgets/build_error.dart';
 import '../../../widgets/custom_suffix_icon.dart';
 import '../../../widgets/default_button.dart';
-import '../../complete_profile/complete_profile.dart';
 
 class SignUpForm extends StatelessWidget {
 

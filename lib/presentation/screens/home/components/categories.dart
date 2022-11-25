@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tokoto_e_commerce/business_logic/product/product_cubit.dart';
-
 import '../../../../helper/size_config.dart';
 
 class Categories extends StatelessWidget {
@@ -10,7 +9,7 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductCubit,ProductState>(
+    return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         ProductCubit cubit = ProductCubit.get(context);
         return Padding(

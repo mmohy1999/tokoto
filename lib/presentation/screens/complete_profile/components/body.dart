@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../../../constants/constants.dart';
 import '../../../../helper/size_config.dart';
 import 'complete_form.dart';
-
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -13,11 +11,14 @@ class Body extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: SizeConfig.screenHeight*0.04,),
+              SizedBox(
+                height: SizeConfig.screenHeight * 0.04,
+              ),
               Text(
                 'Complete Profile',
                 style: headingStyle,
@@ -27,9 +28,10 @@ class Body extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(),
               ),
-              SizedBox(height: SizeConfig.screenHeight*0.08,),
+              SizedBox(
+                height: SizeConfig.screenHeight * 0.08,
+              ),
               const CompleteForm(),
-
             ],
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../helper/size_config.dart';
 
 const kPrimaryColor = Color(0xFFFF7643);
@@ -12,7 +11,6 @@ const kPrimaryGradientColor = LinearGradient(
 const kSecondaryColor = Color(0xFF979797);
 const kTextColor = Color(0xFF757575);
 const Color inActiveIconColor = Color(0xFFB6B6B6);
-
 
 const kAnimationDuration = Duration(milliseconds: 200);
 

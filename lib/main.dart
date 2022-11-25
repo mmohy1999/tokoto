@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tokoto_e_commerce/business_logic/splash/splash_cubit.dart';
 import 'package:tokoto_e_commerce/presentation/screens/splash/splash.dart';
+import 'constants/theme_data.dart';
 import 'helper/bloc_observer.dart';
 import 'helper/project_routes.dart';
-import 'constants/themeData.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -21,7 +20,6 @@ class MyApp extends StatelessWidget {
         title: 'Tokoto',
         theme: projectThemeData(),
         initialRoute: SplashScreen.routeName,
-        routes: projectRoutes
-    );
+        routes: projectRoutes);
   }
 }

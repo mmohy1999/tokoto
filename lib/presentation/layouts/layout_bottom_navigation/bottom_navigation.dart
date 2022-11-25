@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../business_logic/layout/layout_cubit.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/enum.dart';
@@ -39,40 +38,56 @@ class BottomNavigation extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                          icon: SvgPicture.asset(
-                            "assets/icons/Shop Icon.svg",
-                            color: MenuState.home == cubit.selectedMenu
-                                ? kPrimaryColor
-                                : inActiveIconColor,
-                          ),
-                          onPressed:() {
-                            cubit.changeNavigationBar(MenuState.home);
-                          },
+                        icon: SvgPicture.asset(
+                          "assets/icons/Shop Icon.svg",
+                          color: MenuState.home == cubit.selectedMenu
+                              ? kPrimaryColor
+                              : inActiveIconColor,
+                        ),
+                        onPressed: () {
+                          cubit.changeNavigationBar(MenuState.home);
+                        },
                       ),
-                      SizedBox(child:CircleAvatar(backgroundColor:cubit.selectedMenu==MenuState.home? kPrimaryColor:Colors.transparent,minRadius: 3) ,)
+                      SizedBox(
+                        child: CircleAvatar(
+                            backgroundColor:
+                                cubit.selectedMenu == MenuState.home
+                                    ? kPrimaryColor
+                                    : Colors.transparent,
+                            minRadius: 3),
+                      )
                     ],
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: SvgPicture.asset("assets/icons/Heart Icon.svg",
+                        icon: SvgPicture.asset(
+                          "assets/icons/Heart Icon.svg",
                           color: MenuState.favourite == cubit.selectedMenu
                               ? kPrimaryColor
-                              : inActiveIconColor,),
+                              : inActiveIconColor,
+                        ),
                         onPressed: () {
                           cubit.changeNavigationBar(MenuState.favourite);
                         },
                       ),
-                      SizedBox(child:CircleAvatar(backgroundColor:cubit.selectedMenu==MenuState.favourite? kPrimaryColor:Colors.transparent,minRadius: 3) ,)
-
+                      SizedBox(
+                        child: CircleAvatar(
+                            backgroundColor:
+                                cubit.selectedMenu == MenuState.favourite
+                                    ? kPrimaryColor
+                                    : Colors.transparent,
+                            minRadius: 3),
+                      )
                     ],
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg",
+                        icon: SvgPicture.asset(
+                            "assets/icons/Chat bubble Icon.svg",
                             color: MenuState.message == cubit.selectedMenu
                                 ? kPrimaryColor
                                 : inActiveIconColor),
@@ -80,7 +95,14 @@ class BottomNavigation extends StatelessWidget {
                           cubit.changeNavigationBar(MenuState.message);
                         },
                       ),
-                     SizedBox(child:CircleAvatar(backgroundColor: cubit.selectedMenu==MenuState.message?kPrimaryColor:Colors.transparent,minRadius: 3) ,)
+                      SizedBox(
+                        child: CircleAvatar(
+                            backgroundColor:
+                                cubit.selectedMenu == MenuState.message
+                                    ? kPrimaryColor
+                                    : Colors.transparent,
+                            minRadius: 3),
+                      )
                     ],
                   ),
                   Column(
@@ -93,11 +115,17 @@ class BottomNavigation extends StatelessWidget {
                               ? kPrimaryColor
                               : inActiveIconColor,
                         ),
-                        onPressed:() {
+                        onPressed: () {
                           cubit.changeNavigationBar(MenuState.profile);
                         },
                       ),
-                      SizedBox(child:CircleAvatar(backgroundColor:cubit.selectedMenu==MenuState.profile? kPrimaryColor:Colors.transparent,minRadius: 3))
+                      SizedBox(
+                          child: CircleAvatar(
+                              backgroundColor:
+                                  cubit.selectedMenu == MenuState.profile
+                                      ? kPrimaryColor
+                                      : Colors.transparent,
+                              minRadius: 3))
                     ],
                   ),
                 ],

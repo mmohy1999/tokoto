@@ -6,4 +6,3 @@ abstract class ProductState {}
 class ProductInitial extends ProductState {}
 
 class ChangeFav extends ProductState {}
-
