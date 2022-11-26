@@ -20,10 +20,10 @@ class ColorDots extends StatelessWidget {
           return Row(
             children: [
               ...List.generate(
-                cubit.demoProducts[cubit.currentProductDetails].colors.length,
+                cubit.currentProductDetails.colors.length,
                 (index) => ColorDot(
                   color: cubit
-                      .demoProducts[cubit.currentProductDetails].colors[index],
+                      .currentProductDetails.colors[index],
                   isSelected: index == cubit.selectedColor,
                   index: index,
                 ),

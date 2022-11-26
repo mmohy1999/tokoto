@@ -11,7 +11,6 @@ class ProductDescription extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     ProductCubit cubit = ProductCubit.get(context);
@@ -22,7 +21,7 @@ class ProductDescription extends StatelessWidget {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(
-            cubit.demoProducts[cubit.currentProductDetails].title,
+            cubit.currentProductDetails.title,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
@@ -32,13 +31,14 @@ class ProductDescription extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: InkWell(
                 onTap: () {
-                  cubit.changeFavourite(cubit.currentProductDetails);
+                  cubit.changeFavourite(
+                      cubit.currentProductDetails);
                 },
                 child: Container(
                   padding: EdgeInsets.all(getProportionateScreenWidth(15)),
                   width: getProportionateScreenWidth(64),
                   decoration: BoxDecoration(
-                    color: cubit.demoProducts[cubit.currentProductDetails]
+                    color: cubit.currentProductDetails
                             .isFavourite
                         ? const Color(0xFFFFE6E6)
                         : const Color(0xFFF5F6F9),
@@ -49,7 +49,7 @@ class ProductDescription extends StatelessWidget {
                   ),
                   child: SvgPicture.asset(
                     "assets/icons/Heart Icon_2.svg",
-                    color: cubit.demoProducts[cubit.currentProductDetails]
+                    color: cubit.currentProductDetails
                             .isFavourite
                         ? const Color(0xFFFF4848)
                         : const Color(0xFFDBDEE4),
@@ -66,7 +66,7 @@ class ProductDescription extends StatelessWidget {
             right: getProportionateScreenWidth(64),
           ),
           child: Text(
-            cubit.demoProducts[cubit.currentProductDetails].description,
+            cubit.currentProductDetails.description,
             maxLines: 3,
           ),
         ),

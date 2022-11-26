@@ -25,7 +25,7 @@ class ProductCard extends StatelessWidget {
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
           onTap: () {
-            ProductCubit.get(context).showProductDetails(index,context);
+            ProductCubit.get(context).showProductDetails(product,context);
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,7 @@ class ProductCard extends StatelessWidget {
                   InkWell(
                     borderRadius: BorderRadius.circular(50),
                     onTap: () {
-                      ProductCubit.get(context).changeFavourite(index);
+                      ProductCubit.get(context).changeFavourite(product);
                     },
                     child: Container(
                       padding: EdgeInsets.all(getProportionateScreenWidth(8)),

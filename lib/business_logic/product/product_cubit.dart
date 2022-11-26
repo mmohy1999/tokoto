@@ -87,9 +87,10 @@ class ProductCubit extends Cubit<ProductState> {
           "Wireless Controller for PS4™ gives you what you want in your gaming from over precision control your games to sharing …",
       rating: 4.1,
       isFavourite: false,
+      isPopular: true,
     ),
   ];
-
+  List<Product> favProducts = [];
   List<Map<String, dynamic>> categories = [
     {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
     {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
@@ -97,18 +98,28 @@ class ProductCubit extends Cubit<ProductState> {
     {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
     {"icon": "assets/icons/Discover.svg", "text": "More"},
   ];
-  late int currentProductDetails;
+  late Product currentProductDetails;
   int selectedImage = 0;
   int selectedColor = 0;
   int selectedCount = 1;
 
-  changeFavourite(int index) {
-    demoProducts[index].isFavourite = !demoProducts[index].isFavourite;
+  changeFavourite(Product product) {
+    if (product.isFavourite) {
+      favProducts.remove(product);
+    }
+
+    demoProducts[(product.id - 1)].isFavourite =
+        !demoProducts[(product.id - 1)].isFavourite;
+
+    product.isFavourite = product.isFavourite;
+    if (product.isFavourite) {
+      favProducts.add(product);
+    }
     emit(ChangeFav());
   }
 
-  showProductDetails(int index, BuildContext context) {
-    currentProductDetails = index;
+  showProductDetails(Product product, BuildContext context) {
+    currentProductDetails = product;
     Navigator.pushNamed(context, DetailsScreen.routeName, arguments: context);
   }
 
@@ -136,6 +147,7 @@ class ProductCubit extends Cubit<ProductState> {
     selectedImage = 0;
     selectedColor = 0;
     selectedCount = 1;
+    Navigator.pop(context);
   }
 
 }

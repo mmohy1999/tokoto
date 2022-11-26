@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tokoto_e_commerce/business_logic/product/product_cubit.dart';
 import '../../../../constants/constants.dart';
 import '../../../../helper/size_config.dart';
-
 
 class CustomAppBar extends StatelessWidget {
   final double rating;
@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.zero,
                 ),
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => ProductCubit.get(context).onBack(context),
                 child: SvgPicture.asset(
                   "assets/icons/Back ICon.svg",
                   height: 15,

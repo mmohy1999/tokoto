@@ -21,10 +21,10 @@ class ProductImages extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 1,
                 child: Hero(
-                  tag: cubit.demoProducts[cubit.currentProductDetails].id
+                  tag: cubit.currentProductDetails.id
                       .toString(),
                   child: Image.asset(cubit
-                      .demoProducts[cubit.currentProductDetails]
+                      .currentProductDetails
                       .images[cubit.selectedImage]),
                 ),
               ),
@@ -34,7 +34,7 @@ class ProductImages extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ...List.generate(
-                    cubit.demoProducts[cubit.currentProductDetails].images
+                    cubit.currentProductDetails.images
                         .length,
                     (index) => buildSmallProductPreview(index, cubit)),
               ],
@@ -64,7 +64,7 @@ class ProductImages extends StatelessWidget {
                   .withOpacity(cubit.selectedImage == index ? 1 : 0)),
         ),
         child: Image.asset(
-            cubit.demoProducts[cubit.currentProductDetails].images[index]),
+            cubit.currentProductDetails.images[index]),
       ),
     );
   }

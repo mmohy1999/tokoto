@@ -21,7 +21,7 @@ class DetailsScreen extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(AppBar().preferredSize.height),
             child: CustomAppBar(
-                rating: cubit.demoProducts[cubit.currentProductDetails].rating),
+                rating: cubit.currentProductDetails.rating),
           ),
           body: const Body(),
         ),
