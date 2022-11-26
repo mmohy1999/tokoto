@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/Body.dart';
+import 'components/body.dart';
 class LoginSuccessScreen extends StatelessWidget {
   const LoginSuccessScreen({Key? key}) : super(key: key);
   static const String routeName='/login_success';

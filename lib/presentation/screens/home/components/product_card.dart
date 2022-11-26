@@ -24,7 +24,9 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            ProductCubit.get(context).showProductDetails(index,context);
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

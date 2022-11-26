@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tokoto_e_commerce/presentation/screens/product_details/product_details.dart';
 import '../presentation/screens/complete_profile/complete_profile.dart';
 import '../presentation/screens/forget_password/forget_password.dart';
 import '../presentation/screens/login_success/login_success.dart';
@@ -15,4 +16,5 @@ final Map<String, WidgetBuilder> projectRoutes = {
   CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),
   OtpScreen.routeName: (context) => const OtpScreen(),
   LoginSuccessScreen.routeName: (context) => const LoginSuccessScreen(),
+  DetailsScreen.routeName: (context) => const DetailsScreen(),
 };

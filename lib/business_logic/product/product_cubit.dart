@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tokoto_e_commerce/data/models/product.dart';
+import 'package:tokoto_e_commerce/presentation/screens/product_details/product_details.dart';
 
 part 'product_state.dart';
 
@@ -96,9 +97,45 @@ class ProductCubit extends Cubit<ProductState> {
     {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
     {"icon": "assets/icons/Discover.svg", "text": "More"},
   ];
+  late int currentProductDetails;
+  int selectedImage = 0;
+  int selectedColor = 0;
+  int selectedCount = 1;
 
   changeFavourite(int index) {
     demoProducts[index].isFavourite = !demoProducts[index].isFavourite;
     emit(ChangeFav());
   }
+
+  showProductDetails(int index, BuildContext context) {
+    currentProductDetails = index;
+    Navigator.pushNamed(context, DetailsScreen.routeName, arguments: context);
+  }
+
+  changeSelectedImage(int index) {
+    selectedImage = index;
+    emit(ChangeImage());
+  }
+
+  changeSelectedColor(int index) {
+    selectedColor = index;
+    emit(ChangeImage());
+  }
+
+  addSelectedCount() {
+    selectedCount++;
+    emit(ChangeCount());
+  }
+
+  subSelectedCount() {
+    selectedCount--;
+    emit(ChangeCount());
+  }
+
+  onBack(BuildContext context) {
+    selectedImage = 0;
+    selectedColor = 0;
+    selectedCount = 1;
+  }
+
 }
