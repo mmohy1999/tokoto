@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tokoto_e_commerce/business_logic/product/product_cubit.dart';
-import '../../../../constants/constants.dart';
-import '../../../../data/models/product.dart';
-import '../../../../helper/size_config.dart';
+import '../../constants/constants.dart';
+import '../../data/models/product.dart';
+import '../../helper/size_config.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({

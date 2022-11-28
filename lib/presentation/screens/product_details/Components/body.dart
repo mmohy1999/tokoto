@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tokoto_e_commerce/business_logic/product/product_cubit.dart';
 
 import '../../../../helper/size_config.dart';
 import '../../../widgets/default_button.dart';
@@ -12,6 +14,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductCubit cubit = ProductCubit.get(context);
     return ListView(
       children: [
         const ProductImages(),
@@ -34,9 +37,21 @@ class Body extends StatelessWidget {
                           bottom: getProportionateScreenWidth(40),
                           top: getProportionateScreenWidth(15),
                         ),
-                        child: DefaultButton(
-                          text: "Add To Cart",
-                          func: () {},
+                        child: BlocBuilder<ProductCubit, ProductState>(
+                          builder: (context, state) {
+                            return DefaultButton(
+                              text: cubit.currentProductDetails.isInCart
+                                  ? "Update"
+                                  : "Add To Cart",
+                              func: () {
+                                if (cubit.currentProductDetails.isInCart) {
+                                  cubit.updateInCart();
+                                } else {
+                                  cubit.addToCart();
+                                }
+                              },
+                            );
+                          },
                         ),
                       ),
                     ),

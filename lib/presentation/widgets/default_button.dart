@@ -8,6 +8,7 @@ class DefaultButton extends StatelessWidget {
       : super(key: key);
   final String text;
   final VoidCallback func;
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tokoto_e_commerce/business_logic/product/product_cubit.dart';
 import '../../../../helper/size_config.dart';
-import 'product_card.dart';
+import '../../../widgets/product_card.dart';
 import 'section_title.dart';
 
 class PopularProducts extends StatelessWidget {

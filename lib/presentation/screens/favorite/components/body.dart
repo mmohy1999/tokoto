@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../business_logic/product/product_cubit.dart';
 import '../../../../helper/size_config.dart';
-import '../../home/components/product_card.dart';
+import '../../../widgets/product_card.dart';
 
 class Body extends StatelessWidget {
   const Body({

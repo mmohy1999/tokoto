@@ -12,3 +12,9 @@ class ChangeImage extends ProductState {}
 class ChangeColor extends ProductState {}
 
 class ChangeCount extends ProductState {}
+
+class AddToCart extends ProductState {}
+
+class RemoFromvCart extends ProductState {}
+
+class OnBack extends ProductState {}

@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tokoto_e_commerce/data/models/product.dart';
 import 'package:tokoto_e_commerce/presentation/screens/product_details/product_details.dart';
 
+import '../../data/models/cart.dart';
+
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
@@ -12,6 +14,7 @@ class ProductCubit extends Cubit<ProductState> {
 
   List<Product> demoProducts = [
     Product(
+      store: 'Sony',
       id: 1,
       images: [
         "assets/images/ps4_console_white_1.png",
@@ -34,6 +37,7 @@ class ProductCubit extends Cubit<ProductState> {
       isPopular: true,
     ),
     Product(
+      store: 'Nike',
       id: 2,
       images: [
         "assets/images/Image Popular Product 2.png",
@@ -52,6 +56,7 @@ class ProductCubit extends Cubit<ProductState> {
       isPopular: true,
     ),
     Product(
+      store: 'Nova',
       id: 3,
       images: [
         "assets/images/glap.png",
@@ -71,6 +76,7 @@ class ProductCubit extends Cubit<ProductState> {
       isPopular: true,
     ),
     Product(
+      store: 'Sony',
       id: 4,
       images: [
         "assets/images/wireless headset.png",
@@ -91,6 +97,7 @@ class ProductCubit extends Cubit<ProductState> {
     ),
   ];
   List<Product> favProducts = [];
+  List<Cart> cartList = [];
   List<Map<String, dynamic>> categories = [
     {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
     {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
@@ -102,6 +109,7 @@ class ProductCubit extends Cubit<ProductState> {
   int selectedImage = 0;
   int selectedColor = 0;
   int selectedCount = 1;
+  double totalPrice = 0;
 
   changeFavourite(Product product) {
     if (product.isFavourite) {
@@ -120,6 +128,11 @@ class ProductCubit extends Cubit<ProductState> {
 
   showProductDetails(Product product, BuildContext context) {
     currentProductDetails = product;
+    if (currentProductDetails.isInCart) {
+      selectedCount = cartList
+          .firstWhere((element) => element.product == currentProductDetails)
+          .numOfItem;
+    }
     Navigator.pushNamed(context, DetailsScreen.routeName, arguments: context);
   }
 
@@ -143,11 +156,46 @@ class ProductCubit extends Cubit<ProductState> {
     emit(ChangeCount());
   }
 
+  addToCart() {
+    bool flagProductFound = false;
+    for (Cart e in cartList) {
+      if (e.product == currentProductDetails) {
+        flagProductFound = true;
+        e.numOfItem += selectedCount;
+      }
+    }
+    if (!flagProductFound) {
+      cartList
+          .add(Cart(product: currentProductDetails, numOfItem: selectedCount));
+      currentProductDetails.isInCart = true;
+    }
+    emit(AddToCart());
+  }
+
+  updateInCart() {
+    cartList.firstWhere((e) => e.product == currentProductDetails).numOfItem =
+        selectedCount;
+    calcTotalPrice();
+  }
+
+  removeFromCart(int index) {
+    cartList.removeAt(index);
+    calcTotalPrice();
+    emit(RemoFromvCart());
+  }
+
+  calcTotalPrice() {
+    totalPrice = 0;
+    for (Cart element in cartList) {
+      totalPrice += (element.product.price * element.numOfItem);
+    }
+  }
+
   onBack(BuildContext context) {
     selectedImage = 0;
     selectedColor = 0;
     selectedCount = 1;
     Navigator.pop(context);
+    emit(OnBack());
   }
-
 }
