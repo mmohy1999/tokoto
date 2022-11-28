@@ -8,25 +8,30 @@ A E-commerce Flutter project.
 
 ## Screens it contains:
 
-=> Onboarding
+=> Onboarding ✅
 
-=> Login
+=> Login ✅
 
-=> Forgot Password
+=> Forgot Password ✅
 
-=> Sign Up
+=> Sign Up ✅
 
-=> Complete Profile
+=> Complete Profile ✅
 
-=> OTP Verification
+=> OTP Verification ✅
 
-=> Home Page
+=> Home Page ✅
 
-=> Product Details
+=> Favorite ✅
 
-=> Order
+=> Product Details ✅
 
-=> Profile (added)
+=> Cart ✅
 
-=> Bottom Navigation Bar (added)
+=> Profile ✅
 
+=> Checkout ⏳
+
+=> Chat ⏳
+
+=> Notification ⏳
